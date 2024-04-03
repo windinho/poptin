@@ -79,6 +79,11 @@ $(function () {
     $(".modal-content").html(content).addClass("modal-slide-in");
     $(".modal-content [contenteditable]").attr("contenteditable", "false");
     $(".modal-content .pointer-events-none").removeClass("pointer-events-none");
+    $(document).keyup(function (e) {
+      if (e.keyCode == 27) {
+        $("#my_modal_7").prop("checked", false);
+      }
+    });
   });
 
   $(".popup-bg-color").change(function () {
