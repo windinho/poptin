@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Poptin</title>
+    <script src="./lib/tailwind.3"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="loader">
+      <h1 data-text="Loading...">Loading...</h1>
+    </div>
+    <main
+      class="opacity-0 transition-opacity bg-gray-200 max-w-[1280px] mx-auto card md:my-8"
+    >
+      <div
+        class="card-body justify-center lg:flex-row gap-8 max-sm:gap-2 max-sm:p-2"
+      >
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <div class="flex flex-col h-full justify-between items-center">
+              <div role="tablist" class="tabs tabs-lifted">
+                <input
+                  type="radio"
+                  name="my_tabs_1"
+                  role="tab"
+                  class="tab whitespace-nowrap font-medium"
+                  aria-label="Add Elements"
+                  checked
+                />
+                <div role="tabpanel" class="tab-content p-4">
+                  <div class="flex flex-wrap lg:flex-col gap-4">
+                    <div class="max-lg:hidden">
+                      <label for="">Choose element</label>
+                    </div>
+                    <button id="addTextInput" class="btn max-sm:btn-sm">
+                      <span class="material-symbols-rounded">
+                        font_download </span
+                      >Add Text
+                    </button>
+                    <button id="addButton" class="btn max-sm:btn-sm">
+                      <span class="material-symbols-rounded"> touch_app </span
+                      >Add Button
+                    </button>
+                    <button id="uploadButton" class="btn max-sm:btn-sm">
+                      <span class="material-symbols-rounded"> image </span>Add
+                      Image
+                    </button>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      style="display: none"
+                      accept="image/*"
+                    />
+                  </div>
+                </div>
+
+                <input
+                  type="radio"
+                  name="my_tabs_1"
+                  role="tab"
+                  class="tab whitespace-nowrap font-medium"
+                  aria-label="Customize"
+                />
+                <div role="tabpanel" class="tab-content p-4">
+                  <div class="flex flex-wrap lg:flex-col gap-4">
+                    <div class="max-lg:hidden">
+                      <label for="">Choose Colors</label>
+                    </div>
+                    <button class="btn max-sm:btn-sm">
+                      Popup bg
+                      <input
+                        type="color"
+                        class="popup-bg-color"
+                        value="#e17a5f"
+                      />
+                    </button>
+                    <button class="btn max-sm:btn-sm">
+                      Button bg
+                      <input
+                        type="color"
+                        class="button-bg-color"
+                        value="#000"
+                      />
+                    </button>
+                    <button class="btn max-sm:btn-sm">
+                      Button text
+                      <input
+                        type="color"
+                        class="button-text-color"
+                        value="#fff"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="text-black">
+                Drag
+                <div class="badge badge-ghost">Click & Move</div>
+                Edit
+                <div class="badge badge-ghost">Double click</div>
+                Delete
+                <div class="badge badge-ghost">Drag out</div>
+              </div> -->
+              <!-- <div
+                class="bin bg-red-100 px-2 rounded-md w-[200px] h-[120px] flex flex-col justify-center items-center"
+              >
+                <div>
+                  <span class="material-symbols-rounded text-3xl">
+                    delete
+                  </span>
+                </div>
+                <div>Drag items to delete</div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card bg-base-100 shadow-xl grid place-items-center p-8 max-sm:p-2"
+        >
+          <div class="flex justify-between w-full mb-8">
+            <h2 class="card-title">Popup Editor</h2>
+            <div class="flex gap-4">
+              <button id="save" class="btn btn-sm">
+                <span class="material-symbols-rounded"> save </span>Save
+              </button>
+              <label for="my_modal_7" class="btn btn-sm"
+                ><span class="material-symbols-rounded"> visibility </span
+                >Preview</label
+              >
+            </div>
+          </div>
+          <!--  max-sm:w-[375px] max-sm:h-[375px] -->
+          <div id="playground" class="z-10 max-sm:hidden1">
+            <div
+              class="popup-bg shadow-2xl rounded-full relative w-[500px] h-[500px] max-sm:m-[-62px] max-sm:scale-75"
+              style="background-color: #e17a5f"
+            >
+              <div class="draggable-item" style="top: 46px; left: 155px">
+                <img src="./img/stars.png" alt="stars" />
+              </div>
+              <div
+                class="draggable-item text-center"
+                style="top: 141px; left: 104px"
+              >
+                <b class="text-white pointer-events-none text-center"
+                  >All the text and elements in this popup<br />should be
+                  editable and dragable
+                </b>
+              </div>
+              <div class="draggable-item" style="top: 215px; left: 143px">
+                <input
+                  type="text"
+                  placeholder="E-mail"
+                  class="input input-bordered text-gray-400 pointer-events-none"
+                />
+              </div>
+              <div class="draggable-item" style="top: 279px; left: 182px">
+                <button class="btn bg-black text-white pointer-events-none">
+                  SIGNUP NOW
+                </button>
+              </div>
+              <div class="draggable-item" style="top: 362px; left: 131px">
+                <span class="text-white pointer-events-none text-center"
+                  >No credit card required. No Surprises</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            role="alert"
+            class="alert mt-8 border-1 bg-transparent text-gray-500"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="stroke-gray-500 shrink-0 w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <span>You can move, edit & delete items</span>
+          </div>
+        </div>
+
+        <div
+          class="lava opacity-0 -z-10 transition-opacity text-center w-full h-full bg-[#00000069] absolute inset-0"
+        >
+          <div role="alert" class="alert w-max ml-auto mt-8 mr-8 gap-0">
+            <span>Drop outside popup to delete item</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="toast toast-top toast-end opacity-0">
+      <div class="alert alert-success text-white">
+        <span>Saved successfully</span>
+      </div>
+    </div>
+
+    <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="my_modal_7" class="modal-toggle" />
+    <div class="modal" role="dialog">
+      <div class="modal-content col-start-1 row-start-1">
+        <h1>dfsfsdf</h1>
+      </div>
+      <label class="modal-backdrop" for="my_modal_7">Close</label>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="./index.js"></script>
+</html>
