@@ -6,12 +6,17 @@ $(function () {
   var buttonBg = localStorage.getItem("button-bg-color");
   var buttonColor = localStorage.getItem("button-text-color");
 
-  if (!playground)
-    localStorage.setItem("playground", JSON.stringify($("#playground").html()));
+  if (popupBg) $(".popup-bg-color").val(popupBg);
+  if (buttonBg) $(".button-bg-color").val(buttonBg);
+  if (buttonColor) $(".button-text-color").val(buttonColor);
 
-  $(".popup-bg-color").val(popupBg);
-  $(".button-bg-color").val(buttonBg);
-  $(".button-text-color").val(buttonColor);
+  if (!playground) {
+    localStorage.setItem("playground", JSON.stringify($("#playground").html()));
+    localStorage.setItem("popup-bg-color", $(".popup-bg-color").val());
+    localStorage.setItem("button-bg-color", $(".button-bg-color").val());
+    localStorage.setItem("button-text-color", $(".button-text-color").val());
+  }
+
   if (playground) $("#playground").html(playground);
 
   $("#playground .popup-bg").css("background-color", popupBg);
@@ -23,13 +28,13 @@ $(function () {
     if (type === "input") {
       newItem = $(
         `<div class="draggable-item text-center" style="top: ${
-          top + count * 10
+          top + count * 20
         }px;left: 37px;"><b class="text-white pointer-events-none">Sample text</b></div>`
       );
     } else if (type === "button") {
       newItem = $(
         `<div class="draggable-item" style="top: ${
-          top + count * 10
+          top + count * 20
         }px;left: 37px;"><button class="btn pointer-events-none text-white bg-[${buttonBg}]" hover:bg-[none]>Button</button></div>`
       );
     }
@@ -106,7 +111,7 @@ $(function () {
       reader.onload = function (e) {
         var item = $(
           `<div class="draggable-item text-center" style="top: ${
-            top + count * 10
+            top + count * 20
           }px;left: 20px;"><img class="max-w-32 max-h-32" src="#" alt="Selected Image" /></div>`
         );
         $(item).children().attr("src", e.target.result);
