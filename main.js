@@ -30,6 +30,7 @@ $(function () {
   $("#playground .btn").css("color", buttonColor);
 
   function addDraggableItem(type) {
+    if (top + count * 20 >= 373) count = 1;
     var newItem;
     if (type === "input") {
       newItem = $(
