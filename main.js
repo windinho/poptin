@@ -6,6 +6,9 @@ $(function () {
   var buttonBg = localStorage.getItem("button-bg-color");
   var buttonColor = localStorage.getItem("button-text-color");
 
+  if (!playground)
+    localStorage.setItem("playground", JSON.stringify($("#playground").html()));
+
   $(".popup-bg-color").val(popupBg);
   $(".button-bg-color").val(buttonBg);
   $(".button-text-color").val(buttonColor);
@@ -61,7 +64,6 @@ $(function () {
 
   $(".modal-toggle").click(function () {
     var content = JSON.parse(localStorage.getItem("playground"));
-    if (!content) return;
     $(".modal-content").html(content).addClass("modal-slide-in");
     $(".modal-content [contenteditable]").attr("contenteditable", "false");
     $(".modal-content .pointer-events-none").removeClass("pointer-events-none");
@@ -115,11 +117,6 @@ $(function () {
     }
   });
 
-  // $('[type="color"]').parent().click(function() {
-  //     console.log(9)
-  //     $(this).children('[type="color"]').click();
-  // });
-  // $(".pre-loader").addClass("opacity-0 -z-10");
   setTimeout(() => {
     $(".loader").remove();
     $("main").removeClass("opacity-0");
@@ -128,7 +125,6 @@ $(function () {
 
 function makeDraggable(that) {
   //   that.addClass("max-sm:m-[-100px]@ max-sm:scale-75");
-  console.log(9);
   that.draggable({
     drag: function (event, ui) {
       $(".lava").removeClass("opacity-0 -z-10");
