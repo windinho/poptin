@@ -2,22 +2,28 @@ $(function () {
   var top = 113;
   var count = 1;
   var playground = JSON.parse(localStorage.getItem("playground"));
+  if (!playground) {
+    localStorage.setItem("playground", JSON.stringify($("#playground").html()));
+  }
+
   var popupBg = localStorage.getItem("popup-bg-color");
   var buttonBg = localStorage.getItem("button-bg-color");
   var buttonColor = localStorage.getItem("button-text-color");
 
   if (popupBg) $(".popup-bg-color").val(popupBg);
-  if (buttonBg) $(".button-bg-color").val(buttonBg);
-  if (buttonColor) $(".button-text-color").val(buttonColor);
+  else localStorage.setItem("popup-bg-color", $(".popup-bg-color").val());
 
-  if (!playground) {
-    localStorage.setItem("playground", JSON.stringify($("#playground").html()));
-    localStorage.setItem("popup-bg-color", $(".popup-bg-color").val());
-    localStorage.setItem("button-bg-color", $(".button-bg-color").val());
-    localStorage.setItem("button-text-color", $(".button-text-color").val());
-  }
+  if (buttonBg) $(".button-bg-color").val(buttonBg);
+  else localStorage.setItem("button-bg-color", $(".button-bg-color").val());
+
+  if (buttonColor) $(".button-text-color").val(buttonColor);
+  else localStorage.setItem("button-text-color", $(".button-text-color").val());
 
   if (playground) $("#playground").html(playground);
+
+  popupBg = localStorage.getItem("popup-bg-color");
+  buttonBg = localStorage.getItem("button-bg-color");
+  buttonColor = localStorage.getItem("button-text-color");
 
   $("#playground .popup-bg").css("background-color", popupBg);
   $("#playground .btn").css("background-color", buttonBg);
