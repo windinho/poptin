@@ -50,10 +50,12 @@ $(function () {
 
   $("#addTextInput").click(function () {
     addDraggableItem("input");
+    save();
   });
 
   $("#addButton").click(function () {
     addDraggableItem("button");
+    save();
   });
 
   $("#save").click(function () {
@@ -121,6 +123,7 @@ $(function () {
         $(item).children().attr("src", e.target.result);
         $(".popup-bg").append(item);
         makeDraggable(item);
+        save();
       };
       reader.readAsDataURL(file);
     }
