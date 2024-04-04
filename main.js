@@ -1,5 +1,5 @@
 $(function () {
-  var top = 113;
+  var top = -100;
   var count = 1;
   var playground = JSON.parse(localStorage.getItem("playground"));
   if (!playground) {
@@ -30,19 +30,14 @@ $(function () {
   $("#playground .btn").css("color", buttonColor);
 
   function addDraggableItem(type) {
-    if (top + count * 20 >= 373) count = 1;
     var newItem;
     if (type === "input") {
       newItem = $(
-        `<div class="draggable-item text-center" style="top: ${
-          top + count * 20
-        }px;left: 37px;"><b class="text-white pointer-events-none">Sample text</b></div>`
+        `<div class="draggable-item text-center" style="top: ${top}px;left: 37px;"><b class="text-white pointer-events-none">Sample text</b></div>`
       );
     } else if (type === "button") {
       newItem = $(
-        `<div class="draggable-item" style="top: ${
-          top + count * 20
-        }px;left: 37px;"><button class="btn pointer-events-none text-white bg-[${buttonBg}]" hover:bg-[none]>Button</button></div>`
+        `<div class="draggable-item" style="top: ${top}px;left: 37px;"><button class="btn pointer-events-none text-white bg-[${buttonBg}]" hover:bg-[none]>Button</button></div>`
       );
     }
     $(".popup-bg").append(newItem);
@@ -121,9 +116,7 @@ $(function () {
       var reader = new FileReader();
       reader.onload = function (e) {
         var item = $(
-          `<div class="draggable-item text-center" style="top: ${
-            top + count * 20
-          }px;left: 20px;"><img class="max-w-32 max-h-32" src="#" alt="Selected Image" /></div>`
+          `<div class="draggable-item text-center" style="top: ${top}px;left: 20px;"><img class="max-w-32 max-h-32" src="#" alt="Selected Image" /></div>`
         );
         $(item).children().attr("src", e.target.result);
         $(".popup-bg").append(item);
@@ -167,7 +160,9 @@ function makeDraggable(that) {
 
   $("main").droppable({
     drop: function (event, ui) {
-      $(ui.draggable[0]).toggle("explode").remove();
+      $(ui.draggable[0]).hide("explode", { pieces: 75 }, 1000, function () {
+        $(this).show().css("visibility", "hidden");
+      });
       setTimeout(() => {
         $(".lava").addClass("opacity-0 -z-10");
       }, 500);
