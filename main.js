@@ -62,8 +62,7 @@ $(function () {
   });
 
   $("#save").click(function () {
-    localStorage.setItem("playground", JSON.stringify($("#playground").html()));
-    $(".toast").removeClass("opacity-0").fadeIn(300).delay(1500).fadeOut(300);
+    save();
   });
 
   $("#my_modal_7").change(function () {
@@ -134,49 +133,22 @@ $(function () {
     }
   });
 
-  // window.addEventListener('resize', function() {
-  //   if (window.innerWidth < 640) {
-  //     const parentWidth = 500;
-  //     const parentHeight = 500;
-      
-  //     // Calculate the percentages
-  //     const topPercentage = (childTop / parentHeight) * 100;
-  //     const leftPercentage = (childLeft / parentWidth) * 100;
-
-  //     $('.popup-bg').css('width','375px').css('height','375px')
-  //     $('.popup-bg').children().css('top')
-      
-  //   } else {
-  //      console.log("Window width is 640px or more");
-  //      // Add your code here to handle the window being resized to 640px or more
-  //   }
-  //  });
-   
-
   setTimeout(() => {
     $(".loader").remove();
     $("main").removeClass("opacity-0");
   }, 1000);
 });
 
+function save() {
+  localStorage.setItem("playground", JSON.stringify($("#playground").html()));
+  $(".toast").removeClass("opacity-0").fadeIn(300).delay(1500).fadeOut(300);
+}
+
 function makeDraggable(that) {
-  //   that.addClass("max-sm:m-[-100px]@ max-sm:scale-75");
   that.draggable({
     drag: function (event, ui) {
       $(".lava").removeClass("opacity-0 -z-10");
     },
-    // stop: function() {
-    //     var parentWidth = $(this).parent().width();
-    //     var parentHeight = $(this).parent().height();
-        
-    //     var leftPercentage = (100 * parseFloat($(this).position().left) / parentWidth) + "%";
-    //     var topPercentage = (100 * parseFloat($(this).position().top) / parentHeight) + "%";
-        
-    //     $(this).css({
-    //         "left": leftPercentage,
-    //         "top": topPercentage
-    //     });
-    // }
   });
 
   $(that).dblclick(function () {
@@ -189,6 +161,7 @@ function makeDraggable(that) {
     greedy: true,
     drop: function (event, ui) {
       $(".lava").addClass("opacity-0 -z-10");
+      save();
     },
   });
 
@@ -198,6 +171,7 @@ function makeDraggable(that) {
       setTimeout(() => {
         $(".lava").addClass("opacity-0 -z-10");
       }, 500);
+      save();
     },
     over: function () {
       $(".lava").addClass("bg-[#b023234d]");
