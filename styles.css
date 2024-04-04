@@ -1,6 +1,7 @@
 .draggable-item {
-  position: absolute;
+  position: relative;
   user-select: none;
+  width: max-content;
 }
 .rounded-full:before {
   position: absolute;

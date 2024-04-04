@@ -134,6 +134,25 @@ $(function () {
     }
   });
 
+  // window.addEventListener('resize', function() {
+  //   if (window.innerWidth < 640) {
+  //     const parentWidth = 500;
+  //     const parentHeight = 500;
+      
+  //     // Calculate the percentages
+  //     const topPercentage = (childTop / parentHeight) * 100;
+  //     const leftPercentage = (childLeft / parentWidth) * 100;
+
+  //     $('.popup-bg').css('width','375px').css('height','375px')
+  //     $('.popup-bg').children().css('top')
+      
+  //   } else {
+  //      console.log("Window width is 640px or more");
+  //      // Add your code here to handle the window being resized to 640px or more
+  //   }
+  //  });
+   
+
   setTimeout(() => {
     $(".loader").remove();
     $("main").removeClass("opacity-0");
@@ -146,6 +165,18 @@ function makeDraggable(that) {
     drag: function (event, ui) {
       $(".lava").removeClass("opacity-0 -z-10");
     },
+    // stop: function() {
+    //     var parentWidth = $(this).parent().width();
+    //     var parentHeight = $(this).parent().height();
+        
+    //     var leftPercentage = (100 * parseFloat($(this).position().left) / parentWidth) + "%";
+    //     var topPercentage = (100 * parseFloat($(this).position().top) / parentHeight) + "%";
+        
+    //     $(this).css({
+    //         "left": leftPercentage,
+    //         "top": topPercentage
+    //     });
+    // }
   });
 
   $(that).dblclick(function () {
